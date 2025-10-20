@@ -6,5 +6,4 @@ public class dbException extends RuntimeException{
         super(msg);
     }
 
-
 }

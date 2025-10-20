@@ -1,5 +1,6 @@
 package db;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,61 +10,55 @@ import java.util.Properties;
 
 public class DB {
 
-    private static Connection connection = null;
-
-
+    static Connection conec = null;
 
     public static Connection getConnection(){
+        try {
 
-        if (connection == null){
-
-            try {
+            if (conec == null) {
                 Properties properties = loadProperties();
 
-                String urlDb = properties.getProperty("dburl");
+                String url = properties.getProperty("dburl");
 
-                connection = DriverManager.getConnection(urlDb, properties);
+                conec = DriverManager.getConnection(url, properties);
 
-            }
-            catch (SQLException e){
-                throw new dbException(e.getMessage());
             }
 
         }
+        catch (SQLException e){
+            throw new dbException(e.getMessage());
+        }
 
-        return connection;
+        return conec;
+
+    }
+
+    private static Properties loadProperties(){
+        try(FileInputStream fileInputStream = new FileInputStream("db.properties")){
+            Properties properties = new Properties();
+
+            properties.load(fileInputStream);
+
+            return properties;
+
+        }
+        catch (IOException e) {
+            throw new dbException(e.getMessage());
+        }
 
     }
 
     public static void closeConnection(){
+        try {
+            if (conec != null) {
 
-        if(connection != null){
+                conec.close();
 
-            try{
-                connection.close();
             }
-            catch (SQLException e){
-                throw new dbException(e.getMessage());
-            }
-
         }
-
-    }
-
-
-    private static Properties loadProperties(){
-
-        try(FileInputStream file = new FileInputStream("db.properties")){
-            Properties properties = new Properties();
-
-            properties.load(file);
-
-            return properties;
-
-        } catch (IOException e) {
+        catch (SQLException e){
             throw new dbException(e.getMessage());
         }
-
 
     }
 
