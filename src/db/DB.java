@@ -13,7 +13,7 @@ public class DB {
 
 
 
-    private static Connection getConnection(){
+    public static Connection getConnection(){
 
         if (connection == null){
 
@@ -22,7 +22,7 @@ public class DB {
 
                 String urlDb = properties.getProperty("dburl");
 
-                connection = DriverManager.getConnection(urlDb);
+                connection = DriverManager.getConnection(urlDb, properties);
 
             }
             catch (SQLException e){
@@ -35,7 +35,7 @@ public class DB {
 
     }
 
-    private static void closeConnection(){
+    public static void closeConnection(){
 
         if(connection != null){
 
