@@ -30,6 +30,7 @@ public class DB {
             throw new dbException(e.getMessage());
         }
 
+
         return conec;
 
     }

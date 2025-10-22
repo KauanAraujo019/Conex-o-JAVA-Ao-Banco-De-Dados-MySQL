@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Produto implements Serializable {
 
-    private int id;
+    private Integer id;
     private String nome;
     private double preco;
     private String uom;
@@ -13,7 +13,7 @@ public class Produto implements Serializable {
 
     private Categoria categoria;
 
-    public Produto(int id, String nome, double preco, String uom, int quantidade, Categoria categoria) {
+    public Produto(Integer id, String nome, double preco, String uom, int quantidade, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;

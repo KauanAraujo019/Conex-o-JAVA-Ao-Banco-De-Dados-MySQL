@@ -36,9 +36,6 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 
             preparedStatement.executeUpdate();
 
-            System.out.println("Categoria inserida com sucesso!");
-
-
         } catch (SQLException e) {
             throw new dbException(e.getMessage());
         }
