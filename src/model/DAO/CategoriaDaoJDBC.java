@@ -1,5 +1,6 @@
 package model.DAO;
 
+import com.sun.xml.internal.bind.v2.model.core.EnumLeafInfo;
 import model.DAO.impl.CategoriaDAO;
 import model.dataBase.DB;
 import model.dataBase.dbException;
@@ -10,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CategoriaDaoJDBC implements CategoriaDAO {
@@ -129,7 +129,6 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 
             }
 
-            System.out.println("LISTA DE CATEGORIAS: ");
             listaCategoria.forEach(p -> System.out.println("ID: "+p.getId()+" Categoria: "+p.getNome()));
 
 
@@ -139,6 +138,36 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 
         return null;
 
+    }
+
+    public Categoria findByIdCategoria(int id){
+        PreparedStatement preparedStatement = null;
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT * FROM categorias WHERE id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            int idC = resultSet.getInt("id");
+            String nomeC = resultSet.getString("categoria");
+
+
+            return new Categoria(idC, nomeC);
+
+
+        } catch (SQLException e) {
+            throw new dbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(preparedStatement);
+        }
+
 
     }
+
 }

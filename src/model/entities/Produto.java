@@ -88,8 +88,11 @@ public class Produto implements Serializable {
         this.uom = uom;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-
-
-
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

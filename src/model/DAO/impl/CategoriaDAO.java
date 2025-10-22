@@ -1,6 +1,5 @@
 package model.DAO.impl;
 
-import model.DAO.CategoriaDaoJDBC;
 import model.entities.Categoria;
 
 import java.util.List;

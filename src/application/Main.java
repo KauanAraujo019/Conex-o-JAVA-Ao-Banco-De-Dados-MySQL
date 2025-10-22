@@ -1,34 +1,13 @@
 package application;
 
 
-import model.DAO.CategoriaDaoJDBC;
-import model.dataBase.DB;
-import model.dataBase.dbException;
-import model.entities.Categoria;
-import model.entities.Produto;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        try{
-
-            PreparedStatement preparedStatement = DB.getConnection().prepareStatement("SELECT * FROM categorias");
-            CategoriaDaoJDBC categoriaDaoJDBC = new CategoriaDaoJDBC(DB.getConnection());
-            categoriaDaoJDBC.getAllCategorias();
-
-
-        } catch (SQLException e) {
-            throw new dbException(e.getMessage());
-        }
-
-
- /*       int varMenu;
+        int varMenu;
         do {
             System.out.println("BEM VINDO AO SISTEMA DE ESTOQUE MARKETPLACE!");
             System.out.println("-----MENU MARKETPLACE-----");
@@ -52,7 +31,9 @@ public class Main {
 
 
         }while (varMenu > 0 && varMenu < 5);
-*/
+
+
+
 
         scanner.close();
 
