@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class DB {
@@ -53,6 +54,20 @@ public class DB {
             if (conec != null) {
 
                 conec.close();
+
+            }
+        }
+        catch (SQLException e){
+            throw new dbException(e.getMessage());
+        }
+
+    }
+
+    public static void closeStatement(Statement statement){
+        try {
+            if (statement != null) {
+
+                statement.close();
 
             }
         }
