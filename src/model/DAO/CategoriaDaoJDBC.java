@@ -76,7 +76,7 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
     }
 
     @Override
-    public void deleteCategoria(Categoria categoria) {
+    public void deleteCategoria(int id) {
         PreparedStatement preparedStatement = null;
 
         try {
@@ -84,11 +84,9 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
             preparedStatement = connection.prepareStatement("DELETE FROM categorias WHERE id = ? ");
 
 
-            preparedStatement.setInt(1, categoria.getId());
+            preparedStatement.setInt(1, id);
 
             preparedStatement.executeUpdate();
-
-            System.out.println("Categoria deletada com sucesso!");
 
         } catch (SQLException e) {
             throw new dbException(e.getMessage());
@@ -137,6 +135,7 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 
     }
 
+    @Override
     public Categoria findByIdCategoria(int id){
         PreparedStatement preparedStatement = null;
 
