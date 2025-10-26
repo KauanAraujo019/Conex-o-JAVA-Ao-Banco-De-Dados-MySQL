@@ -164,17 +164,13 @@ public class Main {
 
                     break;
 
-
-
-
             }
 
 
 
         }while (varMenu > 0 && varMenu < 7);
 
-
-
+        
 
         scanner.close();
 
